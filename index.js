@@ -2,6 +2,7 @@ const http = require('http');
 
 const hostname = '127.0.0.1';
 const APIs = require('./getAPI')
+const request = require('./createRequest')
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
@@ -16,10 +17,10 @@ server.listen(() => {
     console.log(`Server running at http://${hostname}:${port}/`);
    
     //Get All Countries
-    //APIs.get(APIs.createRequest('https://api-football-v1.p.rapidapi.com/v2/countries'));
+    //APIs.get(request.createRequest('http://www.api-football.com/demo/api/v2/'));
     
     //Get all Leagues
-    //APIs.get(APIs.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues/'));
+    //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues/'));
 
     //Get all 
 
