@@ -1,0 +1,5 @@
+STEP 1
+
+1-Definir BD e instalar
+2-Configurar o Sequilezer para ligar à BD
+3-Definir 3 serviços (País,Ligas,Tags) e criar as tabelas correspondentes e preencher com os dados
