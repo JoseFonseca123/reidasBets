@@ -1,5 +1,16 @@
 STEP 1
 
-1-Definir BD e instalar
+1-Definir BD e instalar (https://dev.mysql.com/downloads/file/?id=490394) user sempre user e pass admin
 2-Configurar o Sequilezer para ligar à BD
 3-Definir 3 serviços (País,Ligas,Tags) e criar as tabelas correspondentes e preencher com os dados
+
+
+1 - Abrir mysql workbench
+2 - Procurar o botao create new schema in the connected server
+3 - Dar o nome de bets
+4 - Apply
+
+
+Se der erro a correr de cors ou express fazer:
+npm install cors
+npm install express
