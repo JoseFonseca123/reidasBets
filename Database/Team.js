@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   var Op = Sequelize.Op;
-  var League = connection.define(
-    "League",
+  var Team = connection.define(
+    "Team",
     {
       id: {
         type: Sequelize.INTEGER,
@@ -13,20 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       },
       Name: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
       },
-      Type: {
+      Country: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
+      League: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
     },
     {
       freezeTableName: true,
-      timestamps: false,
+      timestamps: false
     }
   );
 
-  League.getLeagueById = async function(ID) {
+  Team.getTeamById = async function(ID) {
     return this.findAll({
       raw: true,
       where: {
@@ -37,14 +41,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  League.associate = function(models) {
-    models.League.hasMany(models.Team, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // Country.associate = function(models) {
+  //   models.Country.hasMany(models.League, {
+  //     onDelete: "CASCADE",
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  //};
 
-  return League;
+  return Team;
 };

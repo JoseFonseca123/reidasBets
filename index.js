@@ -22,7 +22,9 @@ app.get("/createdatabase", (request, response) => {
   //Get all Leagues
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues/'));
 
-  //Get all 
+  //Get all teams from 1 league
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/teams/league/2'));
+  
 
   //Get all bookmarkers
   //APIs.get(APIs.createRequest("https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/"));
