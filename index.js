@@ -17,7 +17,7 @@ app.get("/createdatabase", (request, response) => {
 
 
   //Get All Countries
-  //APIs.get(request.createRequest('http://www.api-football.com/demo/api/v2/'));
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/countries/'));
     
   //Get all Leagues
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues/'));

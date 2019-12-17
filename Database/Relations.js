@@ -18,7 +18,9 @@ fs
     return (file.indexOf(".") !== 0) && (file !== "index.js");
   })
   .forEach(function(file) {
-        var model = sequelize.import("./Match");
+        var model = sequelize.import("./Country");
+        db[model.name] = model;
+        var model = sequelize.import("./League");
         db[model.name] = model;
       });
   
