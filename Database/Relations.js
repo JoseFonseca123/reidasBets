@@ -23,6 +23,8 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
     var model = sequelize.import("./Team");
     db[model.name] = model;
+    var model = sequelize.import("./Team_Stats");
+    db[model.name] = model;
   });
 
 Object.keys(db).forEach(function(modelName) {

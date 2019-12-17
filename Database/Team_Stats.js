@@ -3,34 +3,43 @@ const Sequelize = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   var Op = Sequelize.Op;
-  var Team = connection.define(
-    "Team",
+  var Team_Stats = connection.define(
+    "Team_Stats",
     {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
       },
-      Name: {
+      type: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Country: {
+      sub_type: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      League: {
-        type: Sequelize.STRING,
+      home: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      away: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      total: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
     },
+    
     {
       freezeTableName: true,
       timestamps: false
     }
   );
 
-  Team.getTeamById = async function(ID) {
+  Team_Stats.getTeam_StatsById = async function(ID) {
     return this.findAll({
       raw: true,
       where: {
@@ -41,14 +50,5 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-   Team.associate = function(models) {
-     models.Team.hasMany(models.Team_Stats, {
-       onDelete: "CASCADE",
-       foreignKey: {
-         allowNull: false
-       }
-     });
-  };
-
-  return Team;
+  return Team_Stats;
 };

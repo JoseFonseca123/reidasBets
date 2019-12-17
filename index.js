@@ -24,6 +24,9 @@ app.get("/createdatabase", (request, response) => {
 
   //Get all teams from 1 league
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/teams/league/2'));
+
+  //Get all Statistics from one Team
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/statistics/2/33'));
   
 
   //Get all bookmarkers
