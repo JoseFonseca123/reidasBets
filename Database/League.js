@@ -46,5 +46,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  League.associate = function(models) {
+    models.League.hasOne(models.Standing, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return League;
 };

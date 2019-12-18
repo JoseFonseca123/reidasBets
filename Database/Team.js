@@ -50,5 +50,32 @@ module.exports = (sequelize, DataTypes) => {
      });
   };
 
+  Team.associate = function(models) {
+    models.Team.hasMany(models.Standing, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Team.associate = function(models) {
+    models.Standing.hasOne(models.League, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Team.associate = function(models) {
+    models.Team.hasOne(models.Standing, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Team;
 };

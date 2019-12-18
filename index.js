@@ -29,7 +29,7 @@ app.get("/createdatabase", (request, response) => {
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/statistics/2/33'));
   
   //GET matches from league id
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/775/2019-12-14'));
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/775/2019-12-18'));
 
   //GET bookmarkres
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/'));
@@ -39,6 +39,12 @@ app.get("/createdatabase", (request, response) => {
 
   //Get all bookmarkers
   //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/odds/fixture/214113/bookmaker/11'));
+
+  //Get H2H between two teams
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/h2h/33/34'));
+
+  //Get League Standing
+  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagueTable/524'));
 
   //Get all labels
   //APIs.get(APIs.createRequest("https://api-football-v1.p.rapidapi.com/v2/odds/labels"));

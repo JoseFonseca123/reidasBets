@@ -31,6 +31,8 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
     var model = sequelize.import("./Odd");
     db[model.name] = model;
+    var model = sequelize.import("./Standing");
+    db[model.name] = model;
   });
 
 Object.keys(db).forEach(function(modelName) {
