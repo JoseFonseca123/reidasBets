@@ -11,23 +11,23 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      type: {
+      Type: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      sub_type: {
+      SubType: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      home: {
+      Home: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      away: {
+      Away: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      total: {
+      Total: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
