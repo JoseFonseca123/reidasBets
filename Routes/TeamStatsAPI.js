@@ -9,7 +9,7 @@ async function insertTeamStatistics(params) {
             db.Team.getbyLeague(league.id).then(teamsofLeague => {
                 teamsofLeague.forEach( 
                     team => {
-                        APIrequest.createRequest('http://www.api-football.com/demo/api/v2/statistics/' + league.id + '/' + team.id).then(
+                        APIrequest.createRequest('https://api-football-v1.p.rapidapi.com/v2/statistics/' + league.id + '/' + team.id).then(
                             body => {
                                 try {
                                     //console.log(body.req.res.body.api.statistics)

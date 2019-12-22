@@ -3,7 +3,7 @@ var db = require('../Database/Relations');
 
 async function insertLeague() {
     
-     APIrequest.createRequest('http://www.api-football.com/demo/api/v2/leagues').then(body => {
+     APIrequest.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues').then(body => {
         db.League.insert(body.req.res.body.api.leagues)
     })
 }

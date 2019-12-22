@@ -69,8 +69,8 @@ module.exports = (sequelize, DataTypes) => {
   //insert
   Match.insert = async function (matches) {
     for (i in matches) {
-      console.log(matches[i])
-      Match.create({
+      try {
+        Match.create({
           id: matches[i].fixture_id,
           EventDate: matches[i].event_date,
           Round: matches[i].round,
@@ -84,7 +84,13 @@ module.exports = (sequelize, DataTypes) => {
           GoalsAwayTeam: matches[i].goalsAwayTeam,
           HalftimeScore: matches[i].halftime_score,
           FulltimeScore: matches[i].fulltime_score,
-      })
+        })
+      }
+      catch (e) {
+        Console.log('Error Inserting into DB')
+        console.log(e);
+        console.log(matches[i])
+      }
     }
     return 'Countries Insert'
   }
