@@ -25,13 +25,17 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
     var model = sequelize.import("./Team");
     db[model.name] = model;
-    var model = sequelize.import("./Team_Stats");
+    var model = sequelize.import("./TeamStats");
     db[model.name] = model;
     var model = sequelize.import("./Bookmaker");
     db[model.name] = model;
     var model = sequelize.import("./Odd");
     db[model.name] = model;
     var model = sequelize.import("./Standing");
+    db[model.name] = model;
+    var model = sequelize.import("./H2H");
+    db[model.name] = model;
+    var model = sequelize.import("./Predictions");
     db[model.name] = model;
   });
 

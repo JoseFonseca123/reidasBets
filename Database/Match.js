@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true
       },
       EventDate: {
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       Round: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       Status: {
@@ -25,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       StatusShort: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      HomeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      AwayId: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       Home: {
@@ -37,39 +45,19 @@ module.exports = (sequelize, DataTypes) => {
       },
       GoalsHomeTeam: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       GoalsAwayTeam: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      Venue: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       HalftimeScore: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       FulltimeScore: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      ExtratimeScore: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      Penalty: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      HomeId: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      AwayId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       }
     },
     {
@@ -78,12 +66,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  //insert
+  Match.insert = async function (matches) {
+    for (i in matches) {
+      console.log(matches[i])
+      Match.create({
+          id: matches[i].fixture_id,
+          EventDate: matches[i].event_date,
+          Round: matches[i].round,
+          Status: matches[i].status,
+          StatusShort: matches[i].statusShort,
+          HomeId: matches[i].homeTeam_id,
+          AwayId: matches[i].awayTeam_id,
+          Home: matches[i].homeTeam,
+          Away: matches[i].awayTeam,
+          GoalsHomeTeam: matches[i].goalsHomeTeam,
+          GoalsAwayTeam: matches[i].goalsAwayTeam,
+          HalftimeScore: matches[i].halftime_score,
+          FulltimeScore: matches[i].fulltime_score,
+      })
+    }
+    return 'Countries Insert'
+  }
+
+
+
   Match.getMatchbyID = async function(ID) {
     return this.findAll({
       raw: true,
       where: {
         id: {
           [Op.eq]: ID
+        }
+      }
+    });
+  };
+
+  Match.getbyDate = async function (date) {
+    return this.findAll({
+      raw: true,
+      where: {
+        EventDate: {
+          [Op.gte]: date
         }
       }
     });

@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         primaryKey: true
       },
       Name: {
@@ -19,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.STRING,
         allowNull: false
       },
-      League: {
+      LeagueId: {
         type: Sequelize.STRING,
         allowNull: false
-      },
+      }
     },
     {
       freezeTableName: true,
@@ -30,7 +29,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Team.getTeamById = async function(ID) {
+  //insert
+  Team.insert = async function (teams) {
+    for (i in teams) {
+      if (teams[i].name != null) {
+        console.log(teams[i].name);
+        Team.create({
+          id: teams[i].team_id,
+          Name: teams[i].name,
+          Country: teams[i].country,
+          LeagueId: teams[teams.length - 1].league_id
+        });
+      }
+    }
+  };
+
+  Team.getbyId = async function(ID) {
     return this.findAll({
       raw: true,
       where: {
@@ -41,13 +55,24 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-   Team.associate = function(models) {
-     models.Team.hasMany(models.Team_Stats, {
-       onDelete: "CASCADE",
-       foreignKey: {
-         allowNull: false
-       }
-     });
+  Team.getbyLeague = async function(ID) {
+    return this.findAll({
+      raw: true,
+      where: {
+        LeagueId: {
+          [Op.eq]: ID
+        }
+      }
+    });
+  };
+
+  Team.associate = function(models) {
+    models.Team.hasMany(models.Team_Stats, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
 
   Team.associate = function(models) {
@@ -58,24 +83,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   };
-
-  Team.associate = function(models) {
-    models.Standing.hasOne(models.League, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
-  Team.associate = function(models) {
-    models.Team.hasOne(models.Standing, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
   return Team;
 };

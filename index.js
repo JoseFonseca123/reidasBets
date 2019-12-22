@@ -1,55 +1,89 @@
 const express = require("express");
 const cors = require("cors");
-const APIs = require('./getAPI')
-const request = require('./createRequest')
+const countryAPI = require("./Routes/CountryAPI");
+const leagueAPI = require("./Routes/LeagueAPI");
+const teamAPI = require("./Routes/TeamAPI");
+const standingAPI = require("./Routes/StandingAPI");
+const teamStatsAPI = require("./Routes/TeamStatsAPI");
+const matchAPI = require("./Routes/MatchAPI");
+const h2hAPI = require("./Routes/h2hAPI");
+const predictionsAPI = require("./Routes/PredictionsAPI")
 
 const app = express();
 app.use(cors());
+process.env.requestsNumber = 0
 
 
 //PORT 3000 CREATE DATABASE
 //Create the Connection to the Database
 app.get("/createdatabase", (request, response) => {
-  var db = require('./Database/Relations')
+  request.connection.setTimeout(1000 * 60 * 10*10);
   const connection = require('./Database/Config');
-  connection.sync({force: true})
+  connection.sync({ force: true })
+  response.end('Done')
 })
 
 
-  //Get All Countries
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/countries/'));
-    
-  //Get all Leagues
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagues/country/spain/2019'));
+// Add countries to the Database
+app.get("/addcountries", (request, response) => {
 
-  //Get all teams from 1 league
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/teams/league/2'));
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  countryAPI.insertCountries().then (response.end('Done')); 
+})
 
-  //Get all Statistics from one Team
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/statistics/2/33'));
-  
-  //GET matches from league id
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/775/2019-12-18'));
 
-  //GET bookmarkres
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/'));
+// Add countries to the Database
+app.get("/addleagues", (request, response) => {
 
-  //Get Markets
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/odds/labels/'));
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  leagueAPI.insertLeague().then (response.end('Done')); 
+})
 
-  //Get all bookmarkers
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/odds/fixture/214113/bookmaker/11'));
+// Add Teams to the Database
+app.get("/addTeams", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  teamAPI.insertAllTeams().then (response.end('Done')); 
+})
 
-  //Get H2H between two teams
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/h2h/33/34'));
+// Add Standings to the Database
+app.get("/addStandings", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  standingAPI.insertAllStandings().then (response.end('Done')); 
+})
 
-  //Get League Standing
-  //APIs.get(request.createRequest('https://api-football-v1.p.rapidapi.com/v2/leagueTable/524'));
+// Add TeamStatistics to the Database
+app.get("/addTeamStatistics", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  teamStatsAPI.insertTeamStatistics().then (response.end('Done')); 
+})
 
-  //Get all labels
-  //APIs.get(APIs.createRequest("https://api-football-v1.p.rapidapi.com/v2/odds/labels"));
+
+// Add Matches to the Database
+app.get("/addtodayMatches", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  matchAPI.insertAllMatches().then (response.end('Done')); 
+})
+
+app.get("/addH2H", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  h2hAPI.insertH2H().then (response.end('Done')); 
+})
+
+app.get("/addpredictions", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  predictionsAPI.insertPredictions().then (response.end('Done')); 
+})
 
 // Select Listen Port
 
-app.listen(8000, () => {console.log("Listening on port 8000");});
+app.listen(8000, () => { console.log("Listening on port 8000"); });
+app.timeout = 1000000000;
 
