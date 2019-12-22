@@ -9,6 +9,9 @@ async function insertH2H() {
     
     db.Match.getbyDate(new Date().toISOString().slice(0, 10)).then(matches => {
 
+
+        console.log(matches)
+
         var timetosleep = 0;
         var numberofLoops = Math.ceil(matches.length / 30);
         console.log('Number of loops' + numberofLoops);

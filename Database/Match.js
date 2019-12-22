@@ -69,6 +69,7 @@ module.exports = (sequelize, DataTypes) => {
   //insert
   Match.insert = async function (matches) {
     for (i in matches) {
+      console.log(matches[i])
       try {
         Match.create({
           id: matches[i].fixture_id,
@@ -76,14 +77,14 @@ module.exports = (sequelize, DataTypes) => {
           Round: matches[i].round,
           Status: matches[i].status,
           StatusShort: matches[i].statusShort,
-          HomeId: matches[i].homeTeam_id,
-          AwayId: matches[i].awayTeam_id,
-          Home: matches[i].homeTeam,
-          Away: matches[i].awayTeam,
+          HomeId: matches[i].homeTeam.team_id,
+          AwayId: matches[i].awayTeam.team_id,
+          Home: matches[i].homeTeam.team_name,
+          Away: matches[i].awayTeam.team_name,
           GoalsHomeTeam: matches[i].goalsHomeTeam,
           GoalsAwayTeam: matches[i].goalsAwayTeam,
-          HalftimeScore: matches[i].halftime_score,
-          FulltimeScore: matches[i].fulltime_score,
+          HalftimeScore: matches[i].score.halftime,
+          FulltimeScore: matches[i].score.fulltime,
         })
       }
       catch (e) {
