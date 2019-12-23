@@ -31,7 +31,10 @@ async function insertAllTeams(params) {
                             db.Team.insert(body.req.res.body.api.teams)
                         })
                         } catch (e) {
-                        console.log(e + '/n' + body.req.res.body);
+                            console.log('ERROR!!!')
+                            console.log(e);
+                            console.log('REPONSE:')
+                            console.log(body.req.res.body.api.teams);
                         }
                     });
                 })

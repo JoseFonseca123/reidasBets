@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 module.exports = new Sequelize('bets', 'admin', 'admin', {
     host: 'localhost',
     dialect: 'mysql',
-  logging:  console.log //false
+  logging:  false //console.log //
   ,pool: {
     max: 8,
     min: 0,

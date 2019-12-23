@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   Team.insert = async function (teams) {
     for (i in teams) {
       if (teams[i].name != null) {
+        console.log(teams[i].country);
         console.log(teams[i].name);
         Team.create({
           id: teams[i].team_id,
@@ -66,22 +67,13 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  Team.associate = function(models) {
-    models.Team.hasMany(models.Team_Stats, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
-  Team.associate = function(models) {
-    models.Team.hasMany(models.Standing, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // Team.associate = function(models) {
+  //   models.Team.hasMany(models.TeamStats, {
+  //     onDelete: "CASCADE",
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
   return Team;
 };

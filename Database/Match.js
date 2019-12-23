@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.DATE,
         allowNull: false
       },
+      LeagueId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       Round: {
         type: Sequelize.STRING,
         allowNull: false
@@ -74,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
         Match.create({
           id: matches[i].fixture_id,
           EventDate: matches[i].event_date,
+          LeagueId: matches[i].league_id,
           Round: matches[i].round,
           Status: matches[i].status,
           StatusShort: matches[i].statusShort,

@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       Form: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       GoalsDiff: {
         type: Sequelize.STRING,
@@ -52,11 +52,11 @@ module.exports = (sequelize, DataTypes) => {
   );
 
 
-  //insert
-  Standing.insert = async function (standings, league_id) {  
-    console.log(standings.length)
+  //inserty
+  Standing.insert = async function (standings, league_id) { 
+    console.log(new Date())
     for (i in standings) {
-        console.log(standings[i].team_id)
+      console.log(standings[i])
       try {
         if (standings[i])
            Standing.create({
@@ -71,7 +71,9 @@ module.exports = (sequelize, DataTypes) => {
              LeagueId: league_id
            });
       }
-      catch(e) {
+      catch (e) {
+        console.log('Printing stands: ' + standings[i])
+        console.log(e)
       }
     }
    

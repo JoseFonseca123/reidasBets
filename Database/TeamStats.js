@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       LeagueId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       TeamId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       Home: {

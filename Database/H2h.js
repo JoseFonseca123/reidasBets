@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.STRING,
         allowNull: false
       },
+      MatchId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       EventDate: {
         type: Sequelize.DATE,
         allowNull: false
@@ -51,10 +55,11 @@ module.exports = (sequelize, DataTypes) => {
   );
 
    //iNSERT
-   H2H.insert = async function (h2h) {
+   H2H.insert = async function (h2h, matchId) {
     for (i in h2h) {
       H2H.create({
         LeagueId: h2h[i].league_id,
+        MatchId: matchId,
         EventDate: h2h[i].event_date,
         HomeTeamId: h2h[i].homeTeam.team_id,
         AwayTeamId: h2h[i].awayTeam.team_id,

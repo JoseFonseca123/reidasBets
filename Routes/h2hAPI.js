@@ -3,14 +3,7 @@ var db = require('../Database/Relations');
 
 async function insertH2H() {
 
-    const sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
-    
     db.Match.getbyDate(new Date().toISOString().slice(0, 10)).then(matches => {
-
-
-        console.log(matches)
 
         var timetosleep = 0;
         var numberofLoops = Math.ceil(matches.length / 30);
@@ -29,13 +22,11 @@ async function insertH2H() {
                 
                   matches_30.forEach(match => {
                       try {
-                          console.log(match.HomeId)
-                          console.log(match.AwayId)
                           console.log('https://api-football-v1.p.rapidapi.com/v2/fixtures/h2h/'+ match.HomeId +'/' + match.AwayId)
                           APIrequest.createRequest('https://api-football-v1.p.rapidapi.com/v2/fixtures/h2h/'+ match.HomeId +'/' + match.AwayId).then(body => {
                               try {
                                 console.log(body.req.res.body)
-                                db.H2H.insert(body.req.res.body.api.fixtures)
+                                db.H2H.insert(body.req.res.body.api.fixtures ,match.id)
                           } catch (e) {
                             console.log(e + '/n' + body.req.res.body);
                           }
