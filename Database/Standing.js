@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       TeamId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       Position: {
         type: Sequelize.INTEGER,

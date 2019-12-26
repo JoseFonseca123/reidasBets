@@ -82,6 +82,13 @@ app.get("/addpredictions", (request, response) => {
   predictionsAPI.insertPredictions().then (response.end('Done')); 
 })
 
+
+app.get("/getStatsView", (request, response) => {
+  //Avoid Duplicated Requests from Browser
+  request.connection.setTimeout(600000);
+  predictionsAPI.getView().then(response.end('Done')); 
+})
+
 // Select Listen Port
 
 app.listen(8000, () => { console.log("Listening on port 8000"); });

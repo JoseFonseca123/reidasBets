@@ -25,7 +25,7 @@ async function insertTeamStatistics(params) {
                 APIrequest.createRequest('https://api-football-v1.p.rapidapi.com/v2/statistics/' + match.LeagueId + '/' + match.HomeId).then(
                     body => {
                         try {
-                            console.log(body.req.res.body.api.statistics)
+                            //console.log(body.req.res.body.api.statistics)
                             //console.log(match.HomeId)
                             db.TeamStats.insert(body.req.res.body.api.statistics, match.LeagueId, match.HomeId)
                         }

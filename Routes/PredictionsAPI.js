@@ -1,5 +1,6 @@
 const APIrequest = require("../createRequest");
 var db = require("../Database/Relations");
+const Sequelize = require("../Database/Config");
 
 async function insertPredictions() {
   db.Match.getbyDate(new Date().toISOString().slice(0, 10)).then(matches => {
@@ -23,7 +24,7 @@ async function insertPredictions() {
                     try {
                       APIrequest.createRequest("https://api-football-v1.p.rapidapi.com/v2/predictions/" + match.id).then(body => {
                           try {
-                            console.log(body.req.res.body.api)
+                          console.log(body.req.res.body.api)
                           db.Predictions.insert(body.req.res.body.api.predictions,match.id);
                         } catch (e) {
                           //console.log(e + '/n' + body.req.res.body);
@@ -44,6 +45,16 @@ async function insertPredictions() {
   });
 }
 
+async function getView() {
+
+  Sequelize.query('SELECT * FROM bets.matchStats', {
+  })
+  .then(projects => {
+    console.log(projects)
+  })
+}
+
+
 module.exports = {
-  insertPredictions
+  insertPredictions, getView
 };
